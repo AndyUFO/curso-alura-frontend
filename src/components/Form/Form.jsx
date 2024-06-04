@@ -4,11 +4,13 @@ import ListaOpciones from "../listaOpciones/index.jsx";
 import Boton from "../Boton/Boton.jsx";
 import { useState } from "react";
 
-const Form = () => {
+const Form = (props) => {
   const [nombre, setNombre] = useState("");
   const [puesto, setPuesto] = useState("");
   const [foto, setFoto] = useState("");
   const [equipo, setEquipo] = useState("");
+
+  const { registrarColaborador } = props;
 
   const manejarEnvio = (e) => {
     e.preventDefault();
@@ -20,6 +22,7 @@ const Form = () => {
       equipo,
     };
     console.log(datosEnviar);
+    registrarColaborador(datosEnviar);
   };
 
   return (
@@ -50,6 +53,7 @@ const Form = () => {
         <ListaOpciones
           valor={equipo}
           actualizarEquipo={setEquipo}
+          equipos={props.equipos}
         ></ListaOpciones>
         <Boton>Crear</Boton>
       </form>
